@@ -40,7 +40,8 @@ int main(void) {
   sendto(sckt, buf, 0, 0, (struct sockaddr *)&channel, sizeof(channel));
   printf("Sending complete!\n");
   
-  int packet, seconds;
+  int packet;
+  time_t seconds;
   
   // Receive time in datagram
   printf("Waiting for return packet\n");
@@ -48,7 +49,7 @@ int main(void) {
   printf("Receieved packet!\n");
 
   // Network bitorder to host
-  seconds = ntohl(packet);
+  seconds = (int)ntohl(packet);
   
   // Handle time in datagram (buf)
   printf("%s\n", ctime(seconds));
