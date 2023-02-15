@@ -42,7 +42,7 @@ int main(void) {
 
   printf("Server Started!\n");
   
-  addr_size = sizeof(struct sockaddr_in);
+  addr_size = sizeof(channel);
 
   // Receive empty packet from client
   printf("Waiting for packet from client!\n");
