@@ -44,13 +44,18 @@ int main(void) {
   
   addr_size = sizeof(struct sockaddr_in);
 
+  printf("Waiting for packet from client!\n")
+  // Receive empty packet from client
   recvfrom(sckt, buf, BUF_SIZE, 0, (struct sockaddr *)&channel, &addr_size);
+  printf("Recieved packet from client!\n");
 
-  // Get time
-
+  // Get time in seconds and cast to int (4 bytes)
   int seconds = (int)time(NULL);
 
+  // Send time
+  printf("Sending time to client!\n");
   sendto(sckt, &seconds, sizeof(seconds), 0, (struct sockaddr *)&channel, addr_size);
+  printf("Sedning done!\n");
 
   return 0;
 }
