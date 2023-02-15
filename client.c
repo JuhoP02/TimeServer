@@ -37,7 +37,7 @@ int main(void) {
   
   // Send empty datagram
   printf("Sending to server!\n");
-  sendto(sckt, buf, BUF_SIZE, 0, (struct sockaddr *)&channel, sizeof(channel));
+  sendto(sckt, buf, 0, 0, (struct sockaddr *)&channel, sizeof(channel));
   printf("Sending complete!\n");
   
   // Receive time in datagram
