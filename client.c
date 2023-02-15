@@ -36,23 +36,18 @@ int main(void) {
   printf("Client Started!\n");
   
   // Send empty datagram
-  printf("Sending to server!\n");
   sendto(sckt, buf, 0, 0, (struct sockaddr *)&channel, sizeof(channel));
-  printf("Sending complete!\n");
   
   int32_t packet;
   time_t seconds;
   
   // Receive time in datagram
-  printf("Waiting for return packet\n");
   recvfrom(sckt, &packet, BUF_SIZE, 0, (struct sockaddr *)&channel, &addr_size);
-  printf("Receieved packet!\n");
 
   // Network bitorder to host
   seconds = (time_t)ntohl(packet);
   
   // Handle time in datagram (buf)
   printf("%s\n", ctime(&seconds));
-  printf("Client ended");
   return 0;
 }

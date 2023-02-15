@@ -44,21 +44,20 @@ int main(void) {
   
   addr_size = sizeof(channel);
 
-  // Receive empty packet from client
-  printf("Waiting for packet from client!\n");
-  recvfrom(sckt, buf, 0, 0, (struct sockaddr *)&channel, &addr_size);
-  printf("Recieved packet from client!\n");
+  while(1){
 
-  // Get time in seconds and cast to int (4 bytes)
-  int32_t seconds = (int32_t)time(NULL);
-
-  // Host bitorder to network
-  int32_t packet = htonl(seconds);
-
-  // Send time
-  printf("Sending time (%ld bytes) to client!\n", sizeof(seconds));
-  sendto(sckt, &packet, sizeof(int32_t), 0, (struct sockaddr *)&channel, addr_size);
-  printf("Sending done!\n");
+    // Wait for empty datagram
+    recvfrom(sckt, buf, 0, 0, (struct sockaddr *)&channel, &addr_size);
+   
+    // Get time in seconds and cast to int (4 bytes)
+    int32_t seconds = (int32_t)time(NULL);
+  
+    // Host bitorder to network
+    int32_t packet = htonl(seconds);
+  
+    // Send time    
+    sendto(sckt, &packet, sizeof(int32_t), 0, (struct sockaddr *)&channel, addr_size);
+  }
 
   return 0;
 }
