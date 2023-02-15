@@ -52,7 +52,7 @@ int main(void) {
   seconds = (time_t)ntohl(packet);
   
   // Handle time in datagram (buf)
-  printf("%s\n", ctime(seconds));
+  printf("%s\n", ctime(&seconds));
   printf("Client ended");
   return 0;
 }
