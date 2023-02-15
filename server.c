@@ -53,9 +53,9 @@ int main(void) {
   int seconds = (int)time(NULL);
 
   // Send time
-  printf("Sending time to client!\n");
-  sendto(sckt, &seconds, sizeof(seconds), 0, (struct sockaddr *)&channel, addr_size);
-  printf("Sedning done!\n");
+  printf("Sending time (%ld bytes) to client!\n", sizeof(seconds));
+  sendto(sckt, (const void *)seconds, sizeof(seconds), 0, (struct sockaddr *)&channel, addr_size);
+  printf("Sending done!\n");
 
   return 0;
 }

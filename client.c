@@ -43,7 +43,7 @@ int main(void) {
   // Receive time in datagram
   printf("Waiting for return packet\n");
   recvfrom(sckt, buf, BUF_SIZE, 0, (struct sockaddr *)&channel, &addr_size);
-  printf("Recieved packet!\n");
+  printf("Receieved packet!\n");
   
   // Handle time in datagram (buf)
   printf("%s\n", ctime(buf));
