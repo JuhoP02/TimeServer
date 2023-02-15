@@ -40,12 +40,12 @@ int main(void) {
   sendto(sckt, buf, 0, 0, (struct sockaddr *)&channel, sizeof(channel));
   printf("Sending complete!\n");
   
-  int packet;
+  int32_t packet;
   time_t seconds;
   
   // Receive time in datagram
   printf("Waiting for return packet\n");
-  recvfrom(sckt, &seconds, BUF_SIZE, 0, (struct sockaddr *)&channel, &addr_size);
+  recvfrom(sckt, &packet, BUF_SIZE, 0, (struct sockaddr *)&channel, &addr_size);
   printf("Receieved packet!\n");
 
   // Network bitorder to host

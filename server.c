@@ -46,18 +46,18 @@ int main(void) {
 
   // Receive empty packet from client
   printf("Waiting for packet from client!\n");
-  recvfrom(sckt, buf, BUF_SIZE, 0, (struct sockaddr *)&channel, &addr_size);
+  recvfrom(sckt, buf, 0, 0, (struct sockaddr *)&channel, &addr_size);
   printf("Recieved packet from client!\n");
 
   // Get time in seconds and cast to int (4 bytes)
-  int seconds = (int)time(NULL);
-    // Host bitorder to network
+  int32_t seconds = (int32_t)time(NULL);
 
-  int packet = htonl(seconds);
+  // Host bitorder to network
+  int32_t packet = htonl(seconds);
 
   // Send time
   printf("Sending time (%ld bytes) to client!\n", sizeof(seconds));
-  sendto(sckt, &packet, sizeof(packet), 0, (struct sockaddr *)&channel, addr_size);
+  sendto(sckt, &packet, sizeof(int32_t), 0, (struct sockaddr *)&channel, addr_size);
   printf("Sending done!\n");
 
   return 0;
