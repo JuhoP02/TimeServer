@@ -32,8 +32,6 @@ int main(void) {
     return (-1);
   }
 
-  // socket options?
-
   b = bind(sckt, (struct sockaddr *)&channel, sizeof(channel));
   if (b < 0) {
     perror("Binding failed");

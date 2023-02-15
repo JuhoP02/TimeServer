@@ -29,6 +29,7 @@ int main(void) {
   channel.sin_family = AF_INET;
   channel.sin_port = htons(PORT);
 
+  // Convert ip address to binary form
   inet_pton(AF_INET, "127.0.0.1", &channel.sin_addr);
 
   addr_size = sizeof(struct sockaddr_in);
@@ -42,7 +43,7 @@ int main(void) {
   time_t seconds;
   
   // Receive time in datagram
-  recvfrom(sckt, &packet, BUF_SIZE, 0, (struct sockaddr *)&channel, &addr_size);
+  recvfrom(sckt, &packet, sizeof(int32_t), 0, (struct sockaddr *)&channel, &addr_size);
 
   // Network bitorder to host
   seconds = (time_t)ntohl(packet);
