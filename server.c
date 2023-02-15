@@ -9,7 +9,7 @@
 #include <time.h>
 
 #define PORT 37
-#define BUF_SIZE 4096
+#define BUF_SIZE 4
 #define QUEUE_SIZE 10
 
 int main(void) {
