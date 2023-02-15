@@ -44,8 +44,8 @@ int main(void) {
   
   addr_size = sizeof(struct sockaddr_in);
 
-  printf("Waiting for packet from client!\n")
   // Receive empty packet from client
+  printf("Waiting for packet from client!\n");
   recvfrom(sckt, buf, BUF_SIZE, 0, (struct sockaddr *)&channel, &addr_size);
   printf("Recieved packet from client!\n");
 
