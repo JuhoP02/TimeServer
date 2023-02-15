@@ -51,8 +51,8 @@ int main(void) {
    
     // Get time in seconds and cast to int (4 bytes)
     int32_t seconds = (int32_t)time(NULL);
-
-    printf("Connection received, local time: %s\n", ctime(time(NULL)));
+    time_t local = time(NULL);
+    printf("Connection received, local time: %s\n", ctime(&local));
   
     // Host bitorder to network
     int32_t packet = htonl(seconds);
