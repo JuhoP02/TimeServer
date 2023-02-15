@@ -49,7 +49,7 @@ int main(void) {
   printf("Receieved packet!\n");
 
   // Network bitorder to host
-  seconds = (int)ntohl(packet);
+  seconds = (time_t)ntohl(packet);
   
   // Handle time in datagram (buf)
   printf("%s\n", ctime(seconds));
