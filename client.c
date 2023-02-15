@@ -33,6 +33,8 @@ int main(void) {
 
   addr_size = sizeof(struct sockaddr_in);
 
+  printf("Client Started!\n");
+  
   // Send empty datagram
   sendto(sckt, buf, BUF_SIZE, 0, (struct sockaddr *)&channel, sizeof(channel));
 

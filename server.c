@@ -28,7 +28,7 @@ int main(void) {
 
   sckt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
   if (sckt < 0) {
-    perror("Socket failed\n");
+    perror("Socket failed");
     return (-1);
   }
 
@@ -36,10 +36,12 @@ int main(void) {
 
   b = bind(sckt, (struct sockaddr *)&channel, sizeof(channel));
   if (b < 0) {
-    perror("Binding failed\n");
+    perror("Binding failed");
     return -1;
   }
 
+  printf("Server Started!\n");
+  
   addr_size = sizeof(struct sockaddr_in);
 
   recvfrom(sckt, buf, BUF_SIZE, 0, (struct sockaddr *)&channel, &addr_size);
