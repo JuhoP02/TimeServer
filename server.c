@@ -51,10 +51,13 @@ int main(void) {
 
   // Get time in seconds and cast to int (4 bytes)
   int seconds = (int)time(NULL);
+    // Host bitorder to network
+
+  int packet = htonl(seconds);
 
   // Send time
   printf("Sending time (%ld bytes) to client!\n", sizeof(seconds));
-  sendto(sckt, (void *)seconds, sizeof(seconds), 0, (struct sockaddr *)&channel, addr_size);
+  sendto(sckt, &packet, sizeof(packet), 0, (struct sockaddr *)&channel, addr_size);
   printf("Sending done!\n");
 
   return 0;
