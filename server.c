@@ -53,6 +53,7 @@ int main(void) {
     start_time.tm_mon = 0; // Jan
     start_time.tm_yday = 0;
     start_time.tm_mday = 1;
+    start_time_late.tm_year = 0;
 
      struct tm start_time_late; // 00:00 Jan 1 1900
     start_time_late.tm_hour = 0;
@@ -68,16 +69,25 @@ int main(void) {
 
     double diff_time = difftime(t2, t1);
 
+
+    time_t ti = time(NULL);
+
+    struct tm *a;
+  
+    a = localtime(&ti);
+
+    time_t p = mktime(a);
+
+    
+
     time_t current_time = time(NULL); // Feb 16 2023 (time between (1900 + 70) years and 2023)
 
-    int32_t test = (int32_t)diff_time + (int32_t)current_time; // (1970 - 1900) + (2023 - 1970)
-    
     // Get time in seconds and cast to int (4 bytes)
     //int32_t seconds = (int32_t)time(NULL) - (int32_t)2208988800;
     //time_t local = time(NULL);
     //printf("Connection received, seconds: %d, local time: %s\n", seconds, ctime(&local));
 
-    int32_t packet = htonl(test);
+    int32_t packet = htonl(p);
     
     // Host bitorder to network
     //int32_t packet = htonl(seconds);
