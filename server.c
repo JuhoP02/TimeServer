@@ -70,7 +70,7 @@ int main(void) {
 
     time_t current_time = time(NULL); // Feb 16 2023 (time between (1900 + 70) years and 2023)
 
-    int32_t test = (int32_t)diff_time - (int32_t)current_time;
+    int32_t test = (int32_t)diff_time + (int32_t)current_time; // (1970 - 1900) + (2023 - 1970)
     
     // Get time in seconds and cast to int (4 bytes)
     //int32_t seconds = (int32_t)time(NULL) - (int32_t)2208988800;
