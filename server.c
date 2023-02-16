@@ -47,26 +47,23 @@ int main(void) {
     // Wait for empty datagram
     recvfrom(sckt, buf, 0, 0, (struct sockaddr *)&channel, &addr_size);
 
-    time_t ti = time(NULL);
+    //time_t ti = time(NULL);
 
-    struct tm *a;
+    //struct tm *a;
   
-    a = localtime(&ti);
+    //a = localtime(&ti);
 
-    time_t p = mktime(a);
-    
+    //time_t p = mktime(a);
 
     time_t current_time = time(NULL); // Feb 16 2023 (time between (1900 + 70) years and 2023)
 
     // Get time in seconds and cast to int (4 bytes)
-    //int32_t seconds = (int32_t)time(NULL) - (int32_t)2208988800;
-    //time_t local = time(NULL);
-    //printf("Connection received, seconds: %d, local time: %s\n", seconds, ctime(&local));
-
-    int32_t packet = htonl(p);
+    int32_t seconds = (int32_t)time(NULL);
+    time_t local = time(NULL);
+    printf("Connection received, seconds: %d, local time: %s\n", seconds, ctime(&local));
     
     // Host bitorder to network
-    //int32_t packet = htonl(seconds);
+    int32_t packet = htonl(seconds);
   
     // Send time    
     sendto(sckt, &packet, sizeof(int32_t), 0, (struct sockaddr *)&channel, addr_size);
