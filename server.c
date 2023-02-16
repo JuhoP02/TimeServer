@@ -48,10 +48,10 @@ int main(void) {
     recvfrom(sckt, buf, 0, 0, (struct sockaddr *)&channel, &addr_size);
    
     // Get time in seconds and cast to int (4 bytes)
-    int32_t seconds = (int32_t)time(NULL);
+    int32_t seconds = (int32_t)time(NULL) - 2207520000;
     time_t local = time(NULL);
     printf("Connection received, local time: %s\n", ctime(&local));
-  
+    
     // Host bitorder to network
     int32_t packet = htonl(seconds);
   
