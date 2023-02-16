@@ -47,29 +47,6 @@ int main(void) {
     // Wait for empty datagram
     recvfrom(sckt, buf, 0, 0, (struct sockaddr *)&channel, &addr_size);
 
-    struct tm start_time; // 00:00 Jan 1 1900
-    start_time.tm_hour = 0;
-    start_time.tm_sec = 0;
-    start_time.tm_mon = 0; // Jan
-    start_time.tm_yday = 0;
-    start_time.tm_mday = 1;
-    start_time_late.tm_year = 0;
-
-     struct tm start_time_late; // 00:00 Jan 1 1900
-    start_time_late.tm_hour = 0;
-    start_time_late.tm_sec = 0;
-    start_time_late.tm_mon = 0; // Jan
-    start_time_late.tm_yday = 0;
-    start_time_late.tm_mday = 1;
-    start_time_late.tm_year = 70;
-
-    // convert to time_t
-    time_t t1 = mktime(&start_time);
-    time_t t2 = mktime(&start_time_late);
-
-    double diff_time = difftime(t2, t1);
-
-
     time_t ti = time(NULL);
 
     struct tm *a;
@@ -77,7 +54,6 @@ int main(void) {
     a = localtime(&ti);
 
     time_t p = mktime(a);
-
     
 
     time_t current_time = time(NULL); // Feb 16 2023 (time between (1900 + 70) years and 2023)
