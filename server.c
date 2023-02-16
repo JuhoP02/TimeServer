@@ -48,7 +48,7 @@ int main(void) {
     recvfrom(sckt, buf, 0, 0, (struct sockaddr *)&channel, &addr_size);
     
     // Get time in seconds and cast to int (4 bytes)
-    int32_t seconds = (int32_t)time(NULL) - 2208988800;
+    int32_t seconds = (int32_t)(time(NULL) - (time_t)2208988800);
     time_t local = time(NULL);
     printf("Connection received, local time: %s\n", ctime(&local));
     
