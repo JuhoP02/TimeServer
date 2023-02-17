@@ -46,7 +46,7 @@ int main(void) {
   recvfrom(sckt, &packet, sizeof(uint32_t), 0, (struct sockaddr *)&channel, &addr_size);
 
   // Network bitorder to host
-  seconds = (time_t)ntohl(packet);
+  seconds = (time_t)ntohl(packet) - 2208988800;
   
   // Handle time in datagram (buf)
   printf("%s\n", ctime(&seconds));
