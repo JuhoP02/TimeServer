@@ -39,11 +39,11 @@ int main(void) {
   // Send empty datagram
   sendto(sckt, buf, 0, 0, (struct sockaddr *)&channel, sizeof(channel));
   
-  int32_t packet;
+  uint32_t packet;
   time_t seconds;
   
   // Receive time in datagram
-  recvfrom(sckt, &packet, sizeof(int32_t), 0, (struct sockaddr *)&channel, &addr_size);
+  recvfrom(sckt, &packet, sizeof(uint32_t), 0, (struct sockaddr *)&channel, &addr_size);
 
   // Network bitorder to host
   seconds = (time_t)ntohl(packet);
